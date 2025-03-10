@@ -121,6 +121,27 @@
         "description": "The sasToken required to access _artifactsLocation.  When the template is deployed using the accompanying scripts, a sasToken will be automatically generated."
       },
       "defaultValue": ""
+    },
+      "networkAclsBypass": {
+            "type": "string"
+        },
+        "networkAclsDefaultAction": {
+            "type": "string"
+        },
+        "networkAclsIpRules": {
+            "type": "array"
+        },
+        "networkAclsVirtualNetworkRules": {
+            "type": "array"
+        },
+        "publicNetworkAccess": {
+          "type": "string"
+      },
+      "allowBlobPublicAccess": {
+          "type": "bool"
+      },
+      "supportsHttpsTrafficOnly": {
+        "type": "bool"
     }
   },
   "variables": {
