@@ -203,7 +203,28 @@
           },
           "_artifactsLocationSasToken": {
             "value": "[parameters('_artifactsLocationSasToken')]"
-          }
+          },
+      "networkAclsBypass": {
+            "type": "string"
+        },
+        "networkAclsDefaultAction": {
+            "type": "string"
+        },
+        "networkAclsIpRules": {
+            "type": "array"
+        },
+        "networkAclsVirtualNetworkRules": {
+            "type": "array"
+        },
+        "publicNetworkAccess": {
+          "type": "string"
+      },
+      "allowBlobPublicAccess": {
+          "type": "bool"
+      },
+      "supportsHttpsTrafficOnly": {
+        "type": "bool"
+    }
         }
       }
     }
