@@ -139,7 +139,6 @@
       "supportsHttpsTrafficOnly": {
         "type": "bool"
     }
-    }
   },
   "variables": {
     "apiVersionStorage": "2016-01-01",
