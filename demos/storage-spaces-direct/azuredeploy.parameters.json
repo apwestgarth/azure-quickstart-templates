@@ -22,6 +22,27 @@
     },    
     "existingSubnetName": {
       "value": "default"
+    },
+    "networkAclsBypass":{
+      "value": ""
+    },
+    "networkAclsDefaultAction":{
+      "value": "Deny"
+    },
+    "networkAclsIpRules":{
+      "value": "[]"
+    },
+    "networkAclsVirtualNetworkRules":{
+      "value": ""
+    },
+    "publicNetworkAccess":{
+      "value": "Enabled"
+    },
+    "allowBlobPublicAccess":{
+      "value": false
+    },
+    "supportsHttpsTrafficOnly":{
+      "value": true
     }
   }
 }

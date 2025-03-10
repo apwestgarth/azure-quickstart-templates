@@ -116,7 +116,28 @@
       "defaultValue": "[resourceGroup().location]",
       "metadata": {
         "description": "Location for all resources."
-      }
+      },
+      "networkAclsBypass": {
+            "type": "string"
+        },
+        "networkAclsDefaultAction": {
+            "type": "string"
+        },
+        "networkAclsIpRules": {
+            "type": "array"
+        },
+        "networkAclsVirtualNetworkRules": {
+            "type": "array"
+        },
+        "publicNetworkAccess": {
+          "type": "string"
+      },
+      "allowBlobPublicAccess": {
+          "type": "bool"
+      },
+      "supportsHttpsTrafficOnly": {
+        "type": "bool"
+    }
     }
   },
   "variables": {
@@ -150,17 +171,29 @@
     {
       "type": "Microsoft.Storage/storageAccounts",
       "name": "[variables('witnessStorageName')]",
-      "apiVersion": "2016-01-01",
+      "apiVersion": "2023-05-01",
       "location": "[parameters('location')]",
       "sku": {
         "name": "[variables('witnessStorageType')]"
       },
-      "kind": "Storage"
+      "kind": "Storage",
+      "properties":
+      {
+        "allowBlobPublicAccess": "[parameters('allowBlobPublicAccess')]",
+        "publicNetworkAccess": "[parameters('publicNetworkAccess')]",
+        "supportsHttpsTrafficOnly": "[parameters('supportsHttpsTrafficOnly')]",
+        "networkAcls": {
+                    "bypass": "[parameters('networkAclsBypass')]",
+                    "defaultAction": "[parameters('networkAclsDefaultAction')]",
+                    "ipRules": "[parameters('networkAclsIpRules')]",
+                    "virtualNetworkRules": "[parameters('networkAclsVirtualNetworkRules')]"
+                }
+      }
     },
     {
       "type": "Microsoft.Storage/storageAccounts",
       "name": "[concat(variables('storageNamePrefix'),copyindex())]",
-      "apiVersion": "2016-01-01",
+      "apiVersion": "2023-05-01",
       "copy": {
         "name": "storageAccountLoop",
         "count": "[parameters('vmCount')]"
@@ -169,7 +202,19 @@
       "sku": {
         "name": "[parameters('storageAccountType')]"
       },
-      "kind": "Storage"
+      "kind": "Storage",
+      "properties":
+      {
+        "allowBlobPublicAccess": "[parameters('allowBlobPublicAccess')]",
+        "publicNetworkAccess": "[parameters('publicNetworkAccess')]",
+        "supportsHttpsTrafficOnly": "[parameters('supportsHttpsTrafficOnly')]",
+        "networkAcls": {
+                    "bypass": "[parameters('networkAclsBypass')]",
+                    "defaultAction": "[parameters('networkAclsDefaultAction')]",
+                    "ipRules": "[parameters('networkAclsIpRules')]",
+                    "virtualNetworkRules": "[parameters('networkAclsVirtualNetworkRules')]"
+                }
+      }
     },
     {
       "name": "[concat(variables('vmNamePrefix'), copyindex(), '-nic')]",
